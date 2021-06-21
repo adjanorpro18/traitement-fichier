@@ -5,59 +5,60 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Classe Categorie avec un identifaint et un libelle
- * @param idCategorie qui est l'identifaint de la classe
- * @param libelle qui est le libellé de la classe
+ * Classe Marque avec son identifiant et libelle
+ * @param idMarque qui est l'identifiant de la classe
+ * @param libelle qui est le libelle de la classe
  */
+
 @Entity
-public class Categorie {
+public class Marque {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategorie;
+    private int idMarque;
 
-    @Column
+    @Column()
     private String libelle;
 
-    //Relation entre Categorie-Produit = une categorie faisant références à plusiuers produits
-    @OneToMany(mappedBy = "categorie")
+   //Relation Marque-Produit = OneToMany avec une marque pour plusiuers produits
+    @OneToMany(mappedBy = "marque")
     private Set<Produit> produits;
 
     /**
      * Constructeur par defaut
      */
-    public Categorie() {
+    public Marque() {
     }
 
     /**
      * Constructeur avec parametres
-     * @param id
+     * @param idMarque
      * @param libelle
      */
-    public Categorie(int idCategorie, String libelle) {
-        this.idCategorie = idCategorie;
+    public Marque(int idMarque, String libelle) {
+        this.idMarque = idMarque;
         this.libelle = libelle;
+
         Set<Produit> produits = new HashSet<Produit>();
     }
 
     /**
-     * Getters et Setters des attributs de classe
+     * Getters et Setters des attributs de la classe
      */
-
 
     /**
-     * @return l'identifiant de la classe
+     * @return l'identifaint de la classe
      */
-    public int getIdCategorie() {
-        return idCategorie;
+    public int getIdMarque() {
+        return idMarque;
     }
 
     /**
      * modifie l'identifiant de la classe
-     * @param idCategorie
+     * @param id
      */
-    public void setIdCategorie(int idCategorie) {
-        this.idCategorie = idCategorie;
+    public void setIdMarque(int idMarque) {
+        this.idMarque = idMarque;
     }
 
     /**
@@ -76,14 +77,14 @@ public class Categorie {
     }
 
     /**
-     * @return la liste des produits associés à la categorie
+     * @return la liste des produits
      */
     public Set<Produit> getProduits() {
         return produits;
     }
 
     /**
-     * modifie la liste des produits associés à la categorie
+     * modifie la liste des produits
      * @param produits
      */
     public void setProduits(Set<Produit> produits) {

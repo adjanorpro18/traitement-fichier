@@ -1,16 +1,14 @@
 package fr.diginamic.entites;
 
-
 import javax.persistence.*;
 
 /**
- * Classe Ingredient avec un identifiant et un libelle
- * @param id qui représente l'identifaint de la classe
- * @param libelle qui représente le libelle de la classe
+ * Classe Additif avec son identifiant et son libelle
+ * @param id qui est l'identifiant de la classe
+ * @param libelle qui est le libelle de la classe
  */
-
 @Entity
-public class Ingredient {
+public class Additif {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,16 +17,16 @@ public class Ingredient {
     @Column
     private String libelle;
 
+    // Relation Additif - Produit = ManyToOne avec un ou +ieurs additifs pour un produit
 
-    //Relation Ingredient - Produit = ManyToOne avec un ou +ieurs ingredients appartenant à un même produit
     @ManyToOne
     @JoinColumn(name = "idProduit")
     private Produit produit;
 
     /**
-     * Constructeur par defaut
+     * Constructeur par défaut
      */
-    public Ingredient() {
+    public Additif() {
     }
 
     /**
@@ -36,7 +34,7 @@ public class Ingredient {
      * @param id
      * @param libelle
      */
-    public Ingredient(int id, String libelle) {
+    public Additif(int id, String libelle) {
         this.id = id;
         this.libelle = libelle;
     }
@@ -53,7 +51,7 @@ public class Ingredient {
     }
 
     /**
-     * modifie l'identifiant de la classe
+     * modifie l'identifaint de la classe
      * @param id
      */
     public void setId(int id) {
@@ -61,7 +59,7 @@ public class Ingredient {
     }
 
     /**
-     * @return le libellé de la classe
+     * @return le libelle de la classe
      */
     public String getLibelle() {
         return libelle;
@@ -76,14 +74,14 @@ public class Ingredient {
     }
 
     /**
-     * @return le produit associé à la classe Ingredient
+     * @return le produit associé à la classe Additif
      */
     public Produit getProduit() {
         return produit;
     }
 
     /**
-     * modifie le produit associé à la classe Ingredient
+     * modifie le produit associé à la classe Additif
      * @param produit
      */
     public void setProduit(Produit produit) {
